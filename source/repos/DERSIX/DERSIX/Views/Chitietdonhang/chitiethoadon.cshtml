@@ -1,0 +1,74 @@
+﻿@using DERSIX.Models;
+
+@{
+    Layout = "_Layout";
+}
+
+@{
+    var sum = 0;
+}
+
+<!DOCTYPE html>
+<link rel="stylesheet" href="~/2.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+
+<div class="to">
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-xl-8 col-lg-7">
+
+
+            <!-- Card Body -->
+            <div class="card-body">
+                <h1>Chi tiết đơn đặt hàng</h1>
+                <table>
+                    <tr>
+                        <th>Mã Chi tiết hoá đơn</th>
+                        <th>Mã sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                        <th>Thành tiền</th>
+
+                    </tr>
+                    <tr>
+                        @foreach (var item in (List<Chitiethoadon>)Model)
+                        {
+                        <tr>
+                            @{
+                                var t = @item.Soluong * @item.Gia;
+                            }
+
+                            <td style="center">@item.Idchitiethoa</td>
+                            <td style="text-align:left">@item.Idsp </td>
+                            <td style="text-align:right">@item.Soluong </td>
+                            <td style="text-align:left"> @item.Gia </td>
+                            <td style="text-align:right">@t VND </td>
+
+                        </tr>
+                        sum += @t;
+                    }
+
+                        <td colspan=6>
+
+                            Tổng tiền = @sum VND
+
+                        </td>
+
+                        </tr>
+
+
+                    </table>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>

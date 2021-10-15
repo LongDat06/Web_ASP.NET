@@ -1,0 +1,46 @@
+﻿@using DERSIX.Models;
+@{
+    Layout = "_Layout";
+}
+
+<div class="small-container">
+
+    <div class="row row-2">
+        <h2>All Products</h2>
+        <form action="/Product/Lipsick" method="post">
+
+            <select name="abc">
+                <option>All product</option>
+                <option value="P">Lipsick</option>
+                <option value="M">Mask</option>
+                <option value="SC">Skin Care</option>
+            </select>
+            <input type="submit" value="Chọn">
+        </form>
+
+    </div>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-4">
+                <form action="/Giohang/Add_cart?product_id=@item.Id" method="POST">
+                    <img src="~/@item.Img">
+                    <a href="/Product/deltail?id=@item.Id"><h4>@item.Name_products </h4></a>
+                    <p>@item.Price VND</p>
+                    <hidden idsp=@item.Id></hidden>
+                    <input type="submit" name="submit" value="Chọn mua">
+
+                </form>
+            </div>
+        }
+
+    </div>
+    <div class="page-btn">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>&#8594;</span>
+    </div>
+</div>

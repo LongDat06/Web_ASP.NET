@@ -1,0 +1,70 @@
+﻿
+@using DERSIX.Models;
+
+@{
+    Layout = "_Layout1";
+}
+
+@{
+    var t = 0;
+    var sum = 0;
+}
+
+<!DOCTYPE html>
+<link rel="stylesheet" href="~/2.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+
+
+
+<!-- Area Chart -->
+<div class="col-xl-8 col-lg-7">
+
+
+    <!-- Card Body -->
+    <div class="card-body">
+
+        <h1>Chi tiết đơn đặt hàng</h1>
+        <table>
+            <tr>
+                <th>Mã sản phẩm </th>
+                <th colspan=2>Tên sản phẩm </thcolspan=7>
+                <th>Giá</th>
+                <th>Xoá</th>
+                <th></th>
+
+            </tr>
+            <tr>
+                @foreach (var item in (List<Product>)Model)
+                {
+                <tr>
+
+                    <td style="center">@item.Id</td>
+                    <td style="text-align:left">@item.Name_products </td>
+                    <td style="text-align:right">@item.Price VND </td>
+                    `
+                    <td>
+                        <form action="/AdminHome/delete_sanpham?id=@item.Id" method="post">
+                            <input type="submit" value="Xoá" />
+                        </form>
+                    </td>
+                </tr>
+
+            }
+
+
+
+                </tr>
+
+
+            </table>
+        </div>
+
+    </div>
+
+
+
+
+
+

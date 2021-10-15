@@ -1,0 +1,70 @@
+﻿
+@{
+    Layout = "_Layout";
+}
+@{
+    List<Cart> cart_item = (List<Cart>)ViewBag.carts;
+
+}
+@if (ViewData["thongbaoloigiohang"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert('@ViewData["thongbaoloigiohang"]');
+        };
+    </script>
+}
+@{ 
+    var sum = 0;
+}
+<link rel="stylesheet" href="~/2.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+<div class="small-container cart-page">
+    <table class="hoadon">
+        <h1>Giỏ Hàng</h1>
+        <tr>
+
+            <th colspan="2">Sản Phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Xoá</th>
+        </tr>
+        
+        @if (cart_item != null)
+        {
+            
+            @foreach (var item in cart_item)
+            {
+                <tr>
+                    <td style="center" ;> <img width="75px" height="75px" src="~/@item.Product.Img">  </td>
+                    <td style="center"> @item.Product.Name_products  </td>
+                    <td style="center"> @item.Quantity  </td>
+                    @{
+                        var gia = item.Product.Price * item.Quantity;
+                        sum += gia;
+                    }
+                    <td style="center"> @gia   </td>
+                    <td>
+                        <form action="/Giohang/Delete_cart?product_id=@item.Product.Id" method="post">
+                            <input type="submit" value="Xoá" />
+                        </form>
+                    </td>
+
+
+                </tr>
+            }
+            <td colspan=5>
+                Tong tien = @sum
+            </td>
+        }
+
+
+    </table>
+
+    <form method="POST" action="/Hoadon/checkGiohang?tongtien=@sum">
+        <input id="thanhtoan" type="submit" name="ThanhToan" value="Thanh Toán"></th>
+    </form>
+
+
+</div>

@@ -1,0 +1,87 @@
+﻿
+@using DERSIX.Models;
+
+@{
+    Layout = "_Layout1";
+}
+
+@{
+    var t = 0;
+    var sum = 0;
+}
+
+<!DOCTYPE html>
+<link rel="stylesheet" href="~/2.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+
+
+<div class="to">
+    <form action="/Sreach/Index?name='sreach'">
+        <label>Sreach</label>
+        <input type="search" name="sreach" placeholder="Tìm kiếm" />
+    </form>
+</div>
+  
+        
+        <!-- Area Chart -->
+<div class="col-xl-8 col-lg-7">
+
+    
+    <!-- Card Body -->
+    <div class="card-body"> 
+        
+        <h1>Chi tiết đơn đặt hàng</h1>
+        <table>
+            <tr>
+                <th>Mã Hoá đơn</th>
+                <th>Tên Khách hàng</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+                <th>Địa chỉ</th>
+                <th>Tổng tiền</th>
+                <th>Xoá</th>
+                <th></th>
+
+            </tr>
+            <tr>
+                @foreach (var item in (List<Hoadon>)Model)
+                {
+            <tr>
+
+                <td style="center"><a href="/AdminHome/Indexchitietdonhang?id=@item.Idhoadon">@item.Idhoadon </a></td>
+                <td style="text-align:left">@item.Name </td>
+                <td style="text-align:right">@item.Email </td>
+                <td style="text-align:right">@item.Phone </td>
+                <td style="text-align:left">@item.Diachi </td>
+                <td style="text-align:right">@item.Tongtien VND </td>
+                <td>
+                    <form action="/AdminHome/delete_hoadon?id=@item.Idhoadon" method="post">
+                        <input type="submit" value="Xoá" />
+                    </form>
+                </td>
+            </tr>
+                sum += @item.Tongtien;
+            }
+
+                <td colspan=7>
+
+                    Tổng tiền = @sum VND
+
+                </td>
+
+                </tr>
+
+
+            </table>
+        </div>
+
+    </div>
+
+
+        
+
+
+
+   

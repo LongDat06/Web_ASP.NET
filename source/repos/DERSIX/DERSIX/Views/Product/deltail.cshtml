@@ -1,0 +1,52 @@
+﻿@using DERSIX.Models;
+@{
+    Layout = "_Layout";
+}
+
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="~/a.css">
+
+<div class="card">
+    @foreach (var item in Model)
+    {
+
+    <form action="/Giohang/Add_cart?product_id=@item.Id" method="POST">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+                    <div class="preview-pic tab-content">
+                        <div class="tab-pane active" id="pic-1">
+                            <img src="~/@item.Img">
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="details col-md-6">
+                    <h3 class="product-title">@item.Name_products</h3>
+
+                    <p class="product-description">
+                        Giorgio Armani Lip Maestro Intense Velvet Matte Lip Colour Venezia Collection - Màu 208 Venetian Red
+
+                        Son có thể giúp làn da trông sáng hơn là có thật. Và những nàng da vàng muốn có màu son tôn da thì tăm tia ngay thỏi son màu 208 của Giorgio Armani này nhé. Màu nâu cam gần giống màu bí ngô này sẽ làm trắng da rất tốt, hợp với style makeup nhẹ nhàng tự nhiên hàng ngày nữa. Chưa kể, chất son kem lì cũng ghi điểm vì dễ tán, lên màu đẹp và nhẹ tênh, thoải mái.
+                    </p>
+                    <h4 class="price">Giá bán: @item.Price VND</h4>
+
+
+                    <div class="action">
+
+                        <input type="submit" name="submit" value="Chọn mua">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    }
+</div>
+
